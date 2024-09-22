@@ -9,21 +9,44 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-A 4-bit arithmetic logic unit (ALU) is a device that can perform a variety of arithmetic and logic operations on two 4-bit operands.
+wokwi project using a D-flop ring to display "E_fab" in 7-seg dsiplay.
+
+## How to test
+On every clock pulse, display a letter in the repeating sequence "EFAB".
 
 ## How to test
 
-### Input
+Start with all input switches off,
+and sliding switch to the left
+(i.e. to select the automatic clock pulse).
+The letter "F" should blink with every clock pulse.
 
-IN0       clk
-IN1..IN3  operation type [3 bit] (see below)
-IN4..IN7  operand value [4 bit]
+Switch on input switch 3, and "E" should start blinking.
 
-### Output
+Switch on input switch 1, and it should then cycle through "EFAb".
 
-OUT0..OUT3  value stored in the accumulator [4 bit]
-OUT4..OUT6  unused (todo: zero, overflow flags)
-OUT7        carry flag
+Switch on input switch 8, and letter blinking should be disabled.
+
+## Notes
+
+These are the inputs:
+
+| In  | Signal | Function                           |
+|-----|--------|------------------------------------|
+| SW1 | `IN0`  | **Run**: Off = Reset; On = Run     |
+| SW2 | `IN1`  | (Unused)                           |
+| SW3 | `IN2`  | `state_init[0]`; Normally ON       |
+| SW4 | `IN3`  | `state_init[1]`; Normally off      |
+| SW5 | `IN4`  | `state_init[2]`; Normally off      |
+| SW6 | `IN5`  | `state_init[3]`; Normally off      |
+| SW7 | `IN6`  | (Unused)                           |
+| SW8 | `IN7`  | **Blink control**: On = no blink   |
+
+`state_init` specifies the initial state for the sequencing
+flip-flops during reset, and for normal operation the first (SW3)
+would be switched ON, and the other three (SW4..6) would be
+switched off.
+
 
 ## External hardware
 
