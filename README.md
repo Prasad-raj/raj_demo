@@ -2,6 +2,8 @@
 
 # Tiny Tapeout Wokwi Project Template
 
+wokwi project using a D-flop ring to display :EFAB" on 7-seg display.
+
 - [Read the documentation for project](docs/info.md)
 
 ## What is Tiny Tapeout?
